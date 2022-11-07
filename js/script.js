@@ -63,7 +63,8 @@ class Grass {
     this.two = null;
   }
   update (a) {
-    const noise = simplex.noise4D(this.pos.x*1.5, this.pos.y*1.5, this.pos.z*1.5, a * 0.0005) + 1;
+    // const noise = simplex.noise4D(this.pos.x*1.5, this.pos.y*1.5, this.pos.z*1.5, a * 0.0005) + 1;
+    const noise = 1
     this.one = this.pos.clone().multiplyScalar(1.01 + (noise * 0.15 * beat.a));
     this.two = this.one.clone().add(this.one.clone().setLength(this.scale));
   }
@@ -91,12 +92,12 @@ gsap.timeline({
   duration: 0.6,
   ease: 'power3.out'
 });
-gsap.to(group.rotation, {
-  y: Math.PI * 2,
-  duration: 12,
-  ease: 'none',
-  repeat: -1
-});
+// gsap.to(group.rotation, {
+//   y: 0,
+//   duration: 12,
+//   ease: 'none',
+//   repeat: -1
+// });
 
 function render(a) {
   positions = [];
@@ -110,7 +111,8 @@ function render(a) {
   const vs = heart.geometry.attributes.position.array;
   for (let i = 0; i < vs.length; i+=3) {
     const v = new THREE.Vector3(originHeart[i], originHeart[i+1], originHeart[i+2]);
-    const noise = simplex.noise4D(originHeart[i]*1.5, originHeart[i+1]*1.5, originHeart[i+2]*1.5, a * 0.0005) + 1;
+    // const noise = simplex.noise4D(originHeart[i]*1.5, originHeart[i+1]*1.5, originHeart[i+2]*1.5, a * 0.0005) + 1;
+    const noise = 1
     v.multiplyScalar(1 + (noise * 0.15 * beat.a));
     vs[i] = v.x;
     vs[i+1] = v.y;
